@@ -40,38 +40,4 @@ public class MainController {
         }
         bits.get(3).setVisible(true);
     }
-
-    private static boolean check(String equation) {
-        String[] numbers;
-        if (equation.contains("+")) {
-            numbers = equation.split("+");
-        } else if (equation.contains("-")) {
-            numbers = equation.split("-");
-        } else if (equation.contains("*")) {
-            numbers = equation.split("*");
-        } else if (equation.contains("/")) {
-            numbers = equation.split("/");
-        } else {
-            return false;
-        }
-
-        if (numbers.length != 2) {
-            return false;
-        }
-
-        return isNumeric(numbers[0]) && isNumeric(numbers[1]);
-
-    }
-
-    public static boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return false;
-        }
-        try {
-            double d = Double.parseDouble(strNum);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
 }
