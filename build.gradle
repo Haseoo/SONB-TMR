@@ -58,7 +58,7 @@ test {
     useJUnitPlatform()
 }
 
-mainClassName = 'com.github.haseoo.taskmanager.Main'
+mainClassName = 'pl.kielce.tu.weaii.sonb.tmr.circuit.CircuitComponent'
 
 jar {
     manifest {
