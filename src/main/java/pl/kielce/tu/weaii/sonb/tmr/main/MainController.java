@@ -29,7 +29,6 @@ public class MainController {
         equationInput.textProperty().addListener((o, ov, nv) -> {
             startBtn.setDisable(!nv.matches(regex));
         });
-
     }
 
     @FXML
