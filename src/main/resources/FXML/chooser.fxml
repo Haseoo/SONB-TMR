@@ -1,238 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #FFFDD0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="296.0" prefWidth="697.0" style="-fx-background-color: #FFFDD0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="NEVER" maxWidth="274.5999755859375" minWidth="10.0" prefWidth="98.39996337890624" />
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="300.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="90.0" minWidth="50.0" prefWidth="80.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="73.0" prefWidth="161.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="79.0" prefWidth="117.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="50.0" vgrow="NEVER" />
-    <RowConstraints prefHeight="50.0" vgrow="NEVER" />
-    <RowConstraints prefHeight="50.0" vgrow="NEVER" />
-      <RowConstraints prefHeight="50.0" vgrow="ALWAYS" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+    <RowConstraints />
+    <RowConstraints maxHeight="95.0" minHeight="50.0" prefHeight="81.0" vgrow="NEVER" />
+    <RowConstraints maxHeight="92.0" minHeight="50.0" prefHeight="89.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="90.0" minHeight="50.0" prefHeight="80.0" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <Text fx:id="status" strokeType="OUTSIDE" strokeWidth="0.0" text="Unknown" GridPane.columnIndex="1">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-      </Text>
-      <Label text="Status">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-      </Label>
-      <Label text="Equation" GridPane.rowIndex="1">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <children>
-            <GridPane alignment="CENTER" gridLinesVisible="true">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <HBox fx:id="r7" alignment="CENTER" style="-fx-cursor: hand;">
-                     <children>
-                        <Text fx:id="bit71" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="r6" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="1">
-                     <children>
-                        <Text fx:id="bit61" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="r5" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="2">
-                     <children>
-                        <Text fx:id="bit51" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="r4" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="3">
-                     <children>
-                        <Text fx:id="bit41" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="r2" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="5">
-                     <children>
-                        <Text fx:id="bit21" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="r3" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="4">
-                     <children>
-                        <Text fx:id="bit31" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="r1" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="6">
-                     <children>
-                        <Text fx:id="bit11" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="r0" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="7">
-                     <children>
-                        <Text fx:id="bit01" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-               </children>
-            </GridPane>
-         </children>
+      <HBox fx:id="b0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
       </HBox>
-      <Text fx:id="status1" strokeType="OUTSIDE" strokeWidth="0.0" text="Sent" GridPane.rowIndex="3">
+      <HBox fx:id="b1" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox fx:id="b2" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox fx:id="bchoosen" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </HBox>
+      <Line endX="8.5" startX="-100.0" GridPane.rowIndex="2" />
+      <Line endX="8.5" startX="-100.0" GridPane.rowIndex="3" />
+      <Line endX="8.292892456054688" endY="0.2928932309150696" startX="-100.0" GridPane.rowIndex="4" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status" textAlignment="CENTER" wrappingWidth="94.13671875" GridPane.columnIndex="1">
          <font>
             <Font name="Comic Sans MS" size="20.0" />
          </font>
       </Text>
-      <GridPane alignment="CENTER" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <HBox alignment="CENTER">
-               <children>
-                  <Text fx:id="sbit7" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" GridPane.columnIndex="1">
-               <children>
-                  <Text fx:id="sbit6" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" GridPane.columnIndex="2">
-               <children>
-                  <Text fx:id="sbit5" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" GridPane.columnIndex="3">
-               <children>
-                  <Text fx:id="sbit4" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" GridPane.columnIndex="5">
-               <children>
-                  <Text fx:id="sbit2" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" GridPane.columnIndex="4">
-               <children>
-                  <Text fx:id="sbit3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" GridPane.columnIndex="6">
-               <children>
-                  <Text fx:id="sbit1" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" GridPane.columnIndex="7">
-               <children>
-                  <Text fx:id="sbit0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-         </children>
-      </GridPane>
-      <Text fx:id="equation" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="396.13671875" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="status11" strokeType="OUTSIDE" strokeWidth="0.0" text="Result" GridPane.rowIndex="2">
-         <font>
-            <Font name="Comic Sans MS" size="20.0" />
-         </font>
-      </Text>
+      <Line endX="86.5" startX="-100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Line endX="86.5" startX="-100.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Line endX="86.5" startX="-100.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
