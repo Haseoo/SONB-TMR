@@ -23,7 +23,7 @@
         <columnConstraints>
             <ColumnConstraints hgrow="NEVER" prefWidth="50.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
-            <ColumnConstraints hgrow="NEVER" maxWidth="1.7976931348623157E308" prefWidth="200.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="1.7976931348623157E308" prefWidth="150.0" />
             <ColumnConstraints hgrow="NEVER" />
             <ColumnConstraints hgrow="NEVER" prefWidth="50.0" />
         </columnConstraints>
@@ -102,7 +102,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Line endX="200.0" endY="50.0" GridPane.rowIndex="1" />
+                  <Line endX="150.0" endY="50.0" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -114,10 +114,10 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Line endX="200.0" startY="50.0" />
+                  <Line endX="150.0" startY="50.0" />
                </children>
             </GridPane>
-            <Line endX="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Line endX="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Line endX="50.0" GridPane.rowIndex="2" />
             <Line endX="50.0" GridPane.rowIndex="3" />
             <Line endX="50.0" GridPane.rowIndex="4" />

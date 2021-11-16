@@ -1,5 +1,7 @@
 package pl.kielce.tu.weaii.sonb.tmr.main;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+import io.javalin.Javalin;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -25,10 +27,13 @@ public class MainController {
 
     @FXML
     private void initialize() {
+
         equationInput.setDisable(false);
         equationInput.textProperty().addListener((o, ov, nv) -> {
             startBtn.setDisable(!nv.matches(regex));
         });
+
+
     }
 
     @FXML
@@ -39,4 +44,6 @@ public class MainController {
         }
         bits.get(3).setVisible(true);
     }
+
+
 }
