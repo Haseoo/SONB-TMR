@@ -24,7 +24,7 @@ public class ClientBuilder {
         if (host == null || host.equals("")) {
             throw new IllegalArgumentException("Provide host");
         }
-        if(port == null) {
+        if (port == null) {
             throw new IllegalArgumentException("Provide port");
         }
 

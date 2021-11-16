@@ -2,7 +2,6 @@ package pl.kielce.tu.weaii.sonb.tmr.common;
 
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
-import pl.kielce.tu.weaii.sonb.tmr.main.MainComponent;
 
 
 public class JavalinServer {

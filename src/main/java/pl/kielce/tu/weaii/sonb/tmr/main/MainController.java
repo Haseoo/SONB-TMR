@@ -1,7 +1,5 @@
 package pl.kielce.tu.weaii.sonb.tmr.main;
 
-import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
-import io.javalin.Javalin;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;

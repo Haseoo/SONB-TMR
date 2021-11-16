@@ -1,6 +1,5 @@
 package pl.kielce.tu.weaii.sonb.tmr.mainvoter;
 
-import io.javalin.Javalin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
