@@ -172,7 +172,7 @@
                   <ComboBox prefHeight="26.0" prefWidth="264.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Button mnemonicParsing="false" text="Start">
+                        <Button mnemonicParsing="false" onAction="#onStartClick" text="Start">
                            <font>
                               <Font name="Comic Sans MS" size="13.0" />
                            </font>

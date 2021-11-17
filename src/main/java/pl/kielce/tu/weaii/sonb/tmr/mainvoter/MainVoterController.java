@@ -1,6 +1,7 @@
 package pl.kielce.tu.weaii.sonb.tmr.mainvoter;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
 import pl.kielce.tu.weaii.sonb.tmr.common.JavalinServer;
@@ -14,9 +15,14 @@ public class MainVoterController {
     private Text b0;
 
     @FXML
-    private void initialize() {
-        javalinServer.createAndStart(7000);
-    }
+    private ComboBox<Integer> cport;
 
+
+    @FXML
+    private void onStartClick() {
+        Integer selectedItem = cport.getSelectionModel().getSelectedItem();
+        if(selectedItem != null)
+            javalinServer.createAndStart(selectedItem);
+    }
 
 }

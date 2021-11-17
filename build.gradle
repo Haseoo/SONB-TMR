@@ -44,19 +44,19 @@ if (currentOS.isWindows()) {
 }
 
 dependencies {
-    compile 'io.javalin:javalin:4.1.1'
-    compile 'org.apache.cxf:cxf-rt-rs-client:3.4.5'
+    implementation 'io.javalin:javalin:4.1.1'
+    implementation 'org.apache.cxf:cxf-rt-rs-client:3.4.5'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.4'
     implementation 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.13.0'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compileOnly 'org.projectlombok:lombok:1.18.8'
-    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
 
 
-    compile "org.openjfx:javafx-base:11:${platform}"
-    compile "org.openjfx:javafx-graphics:11:${platform}"
-    compile "org.openjfx:javafx-controls:11:${platform}"
-    compile "org.openjfx:javafx-fxml:11:${platform}"
+    implementation "org.openjfx:javafx-base:11:${platform}"
+    implementation "org.openjfx:javafx-graphics:11:${platform}"
+    implementation "org.openjfx:javafx-controls:11:${platform}"
+    implementation "org.openjfx:javafx-fxml:11:${platform}"
 }
 
 test {
