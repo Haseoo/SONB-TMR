@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static pl.kielce.tu.weaii.sonb.tmr.Utils.getResourceURL;
+import static pl.kielce.tu.weaii.sonb.tmr.common.Utils.getResourceURL;
 
 public class MainComponent extends Application {
 

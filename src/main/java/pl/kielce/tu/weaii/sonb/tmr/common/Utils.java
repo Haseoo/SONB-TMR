@@ -1,4 +1,4 @@
-package pl.kielce.tu.weaii.sonb.tmr;
+package pl.kielce.tu.weaii.sonb.tmr.common;
 
 import com.sun.tools.javac.Main;
 import lombok.experimental.UtilityClass;

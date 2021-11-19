@@ -13,7 +13,9 @@ public class JavalinServer {
     }
 
     public void stop() {
-        this.javalin.stop();
+        if (this.javalin != null) {
+            this.javalin.stop();
+        }
     }
 
     public void addGetEndpoint(String endpoint, Handler handler) {

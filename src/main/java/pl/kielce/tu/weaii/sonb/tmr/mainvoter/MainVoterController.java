@@ -21,7 +21,7 @@ public class MainVoterController {
     @FXML
     private void onStartClick() {
         Integer selectedItem = cport.getSelectionModel().getSelectedItem();
-        if(selectedItem != null)
+        if (selectedItem != null)
             javalinServer.createAndStart(selectedItem);
     }
 
