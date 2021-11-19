@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.Integer?>
 <GridPane style="-fx-background-color: #FFFDD0;" xmlns="http://javafx.com/javafx/11.0.1"
           xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
@@ -174,12 +173,10 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
-                        <ChoiceBox fx:id="cport" accessibleRole="CONTEXT_MENU" prefHeight="26.0" prefWidth="316.0">
+                        <ChoiceBox fx:id="cport" accessibleRole="CONTEXT_MENU" prefHeight="26.0" prefWidth="259.0">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <Integer fx:value="9000"/>
-                                    <Integer fx:value="9001"/>
-                                    <Integer fx:value="9002"/>
+
                                 </FXCollections>
                             </items>
                         </ChoiceBox>

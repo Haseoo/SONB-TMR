@@ -6,6 +6,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
 import pl.kielce.tu.weaii.sonb.tmr.common.JavalinServer;
+import pl.kielce.tu.weaii.sonb.tmr.common.dto.EquationRequest;
 
 import static pl.kielce.tu.weaii.sonb.tmr.common.Constants.SERVER_STARTED;
 
@@ -13,6 +14,9 @@ import static pl.kielce.tu.weaii.sonb.tmr.common.Constants.SERVER_STARTED;
 public class CircuitController {
 
     private final JavalinServer javalinServer;
+
+    @FXML
+    private Text equation;
 
     @FXML
     private Text status;
@@ -30,10 +34,20 @@ public class CircuitController {
     private void onStartClick() {
         Integer selectedItem = cport.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            javalinServer.createAndStart(selectedItem);
-            cport.setDisable(true);
-            startBtn.setDisable(true);
-            status.setText(SERVER_STARTED);
+            startServer(selectedItem);
         }
+    }
+
+    private void startServer(Integer selectedItem) {
+        javalinServer.createAndStart(selectedItem);
+        configureEndpoints();
+        cport.setDisable(true);
+        startBtn.setDisable(true);
+        status.setText(SERVER_STARTED);
+    }
+
+    private void configureEndpoints() {
+        javalinServer.addPostEndpoint("/equation",
+                ctx -> equation.setText(ctx.bodyAsClass(EquationRequest.class).getEquation()));
     }
 }

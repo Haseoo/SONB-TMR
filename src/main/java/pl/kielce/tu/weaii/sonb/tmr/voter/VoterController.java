@@ -37,4 +37,9 @@ public class VoterController {
         }
     }
 
+    @FXML
+    private void initialize() {
+        cport.getItems().addAll(8000, 8001, 8002);
+    }
+
 }
