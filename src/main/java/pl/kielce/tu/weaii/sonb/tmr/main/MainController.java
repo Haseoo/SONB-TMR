@@ -11,10 +11,7 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import pl.kielce.tu.weaii.sonb.tmr.common.ClientBuilder;
 import pl.kielce.tu.weaii.sonb.tmr.common.dto.EquationRequest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -83,35 +80,36 @@ public class MainController {
 
     private void createDialogs(int maxPolyn){
         ArrayList<TextInputDialog> dialogs = new ArrayList<>();
-        StringBuilder expression = new StringBuilder();
         int coefficients[] = new int[maxPolyn + 1];
 
         for(int i=0; i<= maxPolyn; i++){
             dialogs.add(i,new TextInputDialog());
             dialogs.get(i).setHeaderText(String
-                    .format("Enter coefficient for %s varialbe",i));
+                    .format("Enter coefficient for x^%s variable",i));
+            if(i==0){
+                dialogs.get(i).setHeaderText("Enter constant number");
+            }
         }
 
         for (int i = maxPolyn; i >= 0; i--) {
-            dialogs.get(i).showAndWait();
+            while (!numberValidator(dialogs.get(i).showAndWait().get())){
+                dialogs.get(i).setHeaderText(dialogs.get(i).getHeaderText() + "\nenter valid integer");
+            }
             int element = Integer.parseInt(dialogs.get(i).getEditor().getText());
             coefficients[i] = element;
-            if(i<maxPolyn && element>0){
-                expression.append("+");
-            }
-            if(i==0){
-                expression.append(String.format("%s",element));
-                continue;
-            }
-            expression.append(String.format("%sx^%s",element,i));
         }
-
-        List<Integer> toReverse =  Arrays.stream(coefficients).boxed().collect(Collectors.toList());
-        Collections.reverse(toReverse);
-        coefficients  = toReverse.stream().mapToInt(i-> i).toArray();
         polynomial.setCoefficients(coefficients);
-        polynomial.setExpression(expression.toString());
+        polynomial.buildExpression();
 
         System.out.println(polynomial.toString());
     }
+
+    private boolean numberValidator(String number){
+        if(number == null){
+            return false;
+        }
+        boolean matches = Pattern.matches("^-?\\d+$",number);
+        return matches;
+    }
+
 }
