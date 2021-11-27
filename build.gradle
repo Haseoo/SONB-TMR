@@ -48,8 +48,8 @@ dependencies {
     implementation 'org.apache.cxf:cxf-rt-rs-client:3.4.5'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.4'
     implementation 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.13.0'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
-    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
 
 
@@ -63,14 +63,14 @@ test {
     useJUnitPlatform()
 }
 
-mainClassName = 'pl.kielce.tu.weaii.sonb.tmr.circuit.CircuitComponent'
+mainClassName = 'pl.kielce.tu.weaii.sonb.tmr.main.MainComponent'
 
 jar {
     manifest {
         attributes 'Main-Class': mainClassName
     }
-    doFirst {
-        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    }
+
+        from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+
     exclude 'META-INF/*.RSA', 'META-INF/*.SF'
 }

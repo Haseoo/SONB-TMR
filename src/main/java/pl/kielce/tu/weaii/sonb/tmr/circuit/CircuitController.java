@@ -31,6 +31,9 @@ public class CircuitController {
     private Button startBtn;
 
     @FXML
+    private Button polynomialsCreator;
+
+    @FXML
     private void onStartClick() {
         Integer selectedItem = cport.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
@@ -50,4 +53,6 @@ public class CircuitController {
         javalinServer.addPostEndpoint("/equation",
                 ctx -> equation.setText(ctx.bodyAsClass(EquationRequest.class).getEquation()));
     }
+
+
 }

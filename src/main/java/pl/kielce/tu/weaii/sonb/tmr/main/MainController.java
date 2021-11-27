@@ -1,8 +1,11 @@
 package pl.kielce.tu.weaii.sonb.tmr.main;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
 import org.apache.cxf.jaxrs.client.WebClient;
@@ -28,9 +31,15 @@ public class MainController {
     private Button startBtn;
 
     @FXML
+    private Button polyn;
+
+    @FXML
     private TextField equationInput;
 
     private List<Text> bits = new ArrayList<>();
+
+   private TextInputDialog td = new TextInputDialog("Poly creator");
+
 
     @FXML
     private void initialize() {
@@ -62,5 +71,8 @@ public class MainController {
         }
     }
 
-
+    @FXML
+    private void openPolynCreator(){
+        td.show();
+    }
 }
