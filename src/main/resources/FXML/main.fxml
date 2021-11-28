@@ -1,90 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #FFFDD0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #FFFDD0;"
+          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
-        <ColumnConstraints hgrow="NEVER" maxWidth="274.5999755859375" minWidth="10.0" prefWidth="98.39996337890624" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="300.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="274.5999755859375" minWidth="10.0" prefWidth="98.39996337890624"/>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="300.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="50.0" vgrow="NEVER" />
-        <RowConstraints prefHeight="50.0" vgrow="NEVER" />
-        <RowConstraints prefHeight="60.0" vgrow="NEVER" />
-        <RowConstraints prefHeight="50.0" vgrow="ALWAYS" />
+        <RowConstraints minHeight="50.0" vgrow="NEVER"/>
+        <RowConstraints prefHeight="50.0" vgrow="NEVER"/>
+        <RowConstraints prefHeight="60.0" vgrow="NEVER"/>
+        <RowConstraints prefHeight="50.0" vgrow="ALWAYS"/>
     </rowConstraints>
     <children>
         <Text fx:id="status" strokeType="OUTSIDE" strokeWidth="0.0" text="Unknown" GridPane.columnIndex="1">
             <font>
-                <Font name="Comic Sans MS" size="20.0" />
+                <Font name="Comic Sans MS" size="20.0"/>
             </font>
         </Text>
         <Label text="Status">
             <font>
-                <Font name="Comic Sans MS" size="20.0" />
+                <Font name="Comic Sans MS" size="20.0"/>
             </font>
         </Label>
         <Label text="Equation" GridPane.rowIndex="1">
             <font>
-                <Font name="Comic Sans MS" size="20.0" />
+                <Font name="Comic Sans MS" size="20.0"/>
             </font>
         </Label>
-      <GridPane alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="298.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="102.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-              <TextField fx:id="equationInput" disable="true" />
-            <Button fx:id="polyn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openPolynCreator" text="Button" textAlignment="CENTER" GridPane.columnIndex="1" />
-         </children>
-      </GridPane>
+        <GridPane alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                  GridPane.valignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="298.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0"
+                                   prefWidth="102.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <TextField fx:id="equationInput" disable="true"/>
+                <Button fx:id="polyn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                        onAction="#openPolynCreator" text="Enter equation" textAlignment="CENTER"
+                        GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
         <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
                 <Button fx:id="startBtn" disable="true" mnemonicParsing="false" onAction="#onStart" text="Start">
                     <font>
-                        <Font name="Comic Sans MS" size="15.0" />
+                        <Font name="Comic Sans MS" size="15.0"/>
                     </font>
                 </Button>
             </children>
         </HBox>
         <Text fx:id="status1" strokeType="OUTSIDE" strokeWidth="0.0" text="Result" GridPane.rowIndex="3">
             <font>
-                <Font name="Comic Sans MS" size="20.0" />
+                <Font name="Comic Sans MS" size="20.0"/>
             </font>
         </Text>
         <GridPane alignment="CENTER" gridLinesVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
                 <HBox alignment="CENTER">
                     <children>
                         <Text fx:id="bit7" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                             <font>
-                                <Font size="25.0" />
+                                <Font size="25.0"/>
                             </font>
                         </Text>
                     </children>
@@ -93,7 +91,7 @@
                     <children>
                         <Text fx:id="bit6" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                             <font>
-                                <Font size="25.0" />
+                                <Font size="25.0"/>
                             </font>
                         </Text>
                     </children>
@@ -102,7 +100,7 @@
                     <children>
                         <Text fx:id="bit5" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                             <font>
-                                <Font size="25.0" />
+                                <Font size="25.0"/>
                             </font>
                         </Text>
                     </children>
@@ -111,7 +109,7 @@
                     <children>
                         <Text fx:id="bit4" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                             <font>
-                                <Font size="25.0" />
+                                <Font size="25.0"/>
                             </font>
                         </Text>
                     </children>
@@ -120,7 +118,7 @@
                     <children>
                         <Text fx:id="bit2" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                             <font>
-                                <Font size="25.0" />
+                                <Font size="25.0"/>
                             </font>
                         </Text>
                     </children>
@@ -129,7 +127,7 @@
                     <children>
                         <Text fx:id="bit3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                             <font>
-                                <Font size="25.0" />
+                                <Font size="25.0"/>
                             </font>
                         </Text>
                     </children>
@@ -138,7 +136,7 @@
                     <children>
                         <Text fx:id="bit1" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                             <font>
-                                <Font size="25.0" />
+                                <Font size="25.0"/>
                             </font>
                         </Text>
                     </children>
@@ -147,7 +145,7 @@
                     <children>
                         <Text fx:id="bit0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                             <font>
-                                <Font size="25.0" />
+                                <Font size="25.0"/>
                             </font>
                         </Text>
                     </children>
@@ -156,6 +154,6 @@
         </GridPane>
     </children>
     <padding>
-        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
     </padding>
 </GridPane>
