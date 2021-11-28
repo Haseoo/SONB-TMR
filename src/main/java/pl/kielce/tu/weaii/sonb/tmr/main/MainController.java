@@ -52,7 +52,6 @@ public class MainController {
             bits.add(text);
         }
         startCircuits();
-        equationInput.setDisable(true);
         startBtn.setDisable(true);
     }
 
@@ -120,6 +119,15 @@ public class MainController {
         polynomial = new Polynomial(coefficients);
         equationInput.setText(polynomial.buildExpression());
         startBtn.setDisable(false);
+    }
+
+
+    private void reset() {
+        polynomial = null;
+        equationInput.setText("");
+        for (Text bit : bits) {
+            bit.setText("");
+        }
     }
 
 }
