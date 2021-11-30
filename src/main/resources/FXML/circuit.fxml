@@ -54,7 +54,7 @@
                     <children>
                         <HBox fx:id="r7" alignment="CENTER" style="-fx-cursor: hand;">
                             <children>
-                                <Text fx:id="bit71" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
+                                <Text fx:id="bit7" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                                     <font>
                                         <Font size="25.0"/>
                                     </font>
@@ -63,7 +63,7 @@
                         </HBox>
                         <HBox fx:id="r6" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="1">
                             <children>
-                                <Text fx:id="bit61" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
+                                <Text fx:id="bit6" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                                     <font>
                                         <Font size="25.0"/>
                                     </font>
@@ -72,7 +72,7 @@
                         </HBox>
                         <HBox fx:id="r5" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="2">
                             <children>
-                                <Text fx:id="bit51" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
+                                <Text fx:id="bit5" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                                     <font>
                                         <Font size="25.0"/>
                                     </font>
@@ -81,7 +81,7 @@
                         </HBox>
                         <HBox fx:id="r4" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="3">
                             <children>
-                                <Text fx:id="bit41" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
+                                <Text fx:id="bit4" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                                     <font>
                                         <Font size="25.0"/>
                                     </font>
@@ -90,7 +90,7 @@
                         </HBox>
                         <HBox fx:id="r2" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="5">
                             <children>
-                                <Text fx:id="bit21" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
+                                <Text fx:id="bit2" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                                     <font>
                                         <Font size="25.0"/>
                                     </font>
@@ -99,7 +99,7 @@
                         </HBox>
                         <HBox fx:id="r3" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="4">
                             <children>
-                                <Text fx:id="bit31" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
+                                <Text fx:id="bit3" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                                     <font>
                                         <Font size="25.0"/>
                                     </font>
@@ -108,7 +108,7 @@
                         </HBox>
                         <HBox fx:id="r1" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="6">
                             <children>
-                                <Text fx:id="bit11" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
+                                <Text fx:id="bit1" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                                     <font>
                                         <Font size="25.0"/>
                                     </font>
@@ -117,7 +117,7 @@
                         </HBox>
                         <HBox fx:id="r0" alignment="CENTER" style="-fx-cursor: hand;" GridPane.columnIndex="7">
                             <children>
-                                <Text fx:id="bit01" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
+                                <Text fx:id="bit0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false">
                                     <font>
                                         <Font size="25.0"/>
                                     </font>

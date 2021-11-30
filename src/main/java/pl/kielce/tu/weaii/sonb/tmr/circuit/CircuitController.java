@@ -4,10 +4,15 @@ import io.javalin.http.Context;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
 import pl.kielce.tu.weaii.sonb.tmr.common.JavalinServer;
+import pl.kielce.tu.weaii.sonb.tmr.common.dto.BitResponse;
 import pl.kielce.tu.weaii.sonb.tmr.common.dto.Polynomial;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static pl.kielce.tu.weaii.sonb.tmr.common.Constants.SERVER_STARTED;
 
@@ -23,21 +28,38 @@ public class CircuitController {
     private Text status;
 
     @FXML
-    private Text b0;
-
-    @FXML
     private ChoiceBox<Integer> cport;
 
     @FXML
     private Button startBtn;
 
-    private Polynomial polynomial;
+    private List<Text> bits = new ArrayList<>();
+
+    private List<Text> sentBits = new ArrayList<>();
 
     @FXML
     private void onStartClick() {
         Integer selectedItem = cport.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             startServer(selectedItem);
+        }
+        var scene = startBtn.getScene();
+        for (var i = 0; i < 8; i++) {
+            var bit = (Text) scene.lookup(String.format("#bit%d", i));
+            bit.setText("");
+            bit.setVisible(true);
+            bit.addEventFilter(MouseEvent.MOUSE_CLICKED, c -> {
+                if (bit.getText().equals("1")) {
+                    bit.setText("0");
+                } else if (bit.getText().equals("0")) {
+                    bit.setText("1");
+                }
+            });
+            bits.add(bit);
+            var sbit = (Text) scene.lookup(String.format("#sbit%d", i));
+            sbit.setVisible(true);
+            sbit.setText("");
+            sentBits.add(sbit);
         }
     }
 
@@ -51,13 +73,30 @@ public class CircuitController {
 
     private void configureEndpoints() {
         javalinServer.addPostEndpoint("/equation", this::handleEquationEndpoint);
+        javalinServer.addGetEndpoint("/bit", this::handleGetBit);
     }
 
     private void handleEquationEndpoint(Context context) {
         Polynomial polynomialRequest = context.bodyAsClass(Polynomial.class);
-        this.polynomial = polynomialRequest;
         equation.setText(polynomialRequest.buildExpression());
+    }
 
+    private void handleGetBit(Context context) {
+        BitResponse bitResponse;
+        String no = context.queryParam("no");
+        if (no == null) {
+            bitResponse = new BitResponse(BitResponse.Status.ERROR, "Provide bit no", null);
+        } else {
+            int index = Integer.parseInt(no);
+            String bitAsString = bits.get(index).getText();
+            if (bitAsString == null || bitAsString.equals("")) {
+                bitResponse = new BitResponse(BitResponse.Status.ERROR, "Equation has no solution", null);
+            } else {
+                sentBits.get(index).setText(bitAsString);
+                bitResponse = new BitResponse(BitResponse.Status.OK, "OK", Integer.parseInt(bitAsString));
+            }
+        }
+        context.json(bitResponse);
     }
 
 
