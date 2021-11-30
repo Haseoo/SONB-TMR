@@ -7,6 +7,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EquationRequest {
-    private String equation;
+public class BitResponse {
+
+    public enum Status {
+        OK,
+        ERROR
+    }
+
+    private Status status;
+    private String message;
+    private Integer bitValue;
 }

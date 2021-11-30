@@ -9,21 +9,27 @@ import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
 import org.apache.cxf.jaxrs.client.WebClient;
 import pl.kielce.tu.weaii.sonb.tmr.common.ClientBuilder;
-import pl.kielce.tu.weaii.sonb.tmr.common.dto.EquationRequest;
+import pl.kielce.tu.weaii.sonb.tmr.common.dto.Polynomial;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class MainController {
 
+    private static final String CLIENT_IP = "localhost";
+    private static final String VOTER_IP = "localhost";
+
     private final WebClient[] circuitClients = {
-            new ClientBuilder().host("localhost").port(9000).build(),
-            new ClientBuilder().host("localhost").port(9001).build(),
-            new ClientBuilder().host("localhost").port(9002).build()
+            new ClientBuilder().host(CLIENT_IP).port(9000).build(),
+            new ClientBuilder().host(CLIENT_IP).port(9001).build(),
+            new ClientBuilder().host(CLIENT_IP).port(9002).build()
     };
 
+    private final WebClient voterClient = new ClientBuilder().host(VOTER_IP).port(7000).build();
     @FXML
     private Button startBtn;
 
@@ -57,7 +63,7 @@ public class MainController {
 
     private void startCircuits() {
         for (WebClient circuitClient : circuitClients) {
-            circuitClient.replacePath("/equation").post(new EquationRequest(equationInput.getText()));
+            circuitClient.replacePath("/equation").post(polynomial);
         }
     }
 
@@ -116,7 +122,9 @@ public class MainController {
                 }
             }
         }
-        polynomial = new Polynomial(coefficients);
+        polynomial = new Polynomial(Arrays.stream(coefficients)
+                .boxed()
+                .collect(Collectors.toCollection(ArrayList::new)));
         equationInput.setText(polynomial.buildExpression());
         startBtn.setDisable(false);
     }

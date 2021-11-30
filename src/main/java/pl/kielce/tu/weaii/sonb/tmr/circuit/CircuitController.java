@@ -1,12 +1,13 @@
 package pl.kielce.tu.weaii.sonb.tmr.circuit;
 
+import io.javalin.http.Context;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
 import pl.kielce.tu.weaii.sonb.tmr.common.JavalinServer;
-import pl.kielce.tu.weaii.sonb.tmr.common.dto.EquationRequest;
+import pl.kielce.tu.weaii.sonb.tmr.common.dto.Polynomial;
 
 import static pl.kielce.tu.weaii.sonb.tmr.common.Constants.SERVER_STARTED;
 
@@ -30,8 +31,7 @@ public class CircuitController {
     @FXML
     private Button startBtn;
 
-    @FXML
-    private Button polynomialsCreator;
+    private Polynomial polynomial;
 
     @FXML
     private void onStartClick() {
@@ -50,8 +50,14 @@ public class CircuitController {
     }
 
     private void configureEndpoints() {
-        javalinServer.addPostEndpoint("/equation",
-                ctx -> equation.setText(ctx.bodyAsClass(EquationRequest.class).getEquation()));
+        javalinServer.addPostEndpoint("/equation", this::handleEquationEndpoint);
+    }
+
+    private void handleEquationEndpoint(Context context) {
+        Polynomial polynomialRequest = context.bodyAsClass(Polynomial.class);
+        this.polynomial = polynomialRequest;
+        equation.setText(polynomialRequest.buildExpression());
+
     }
 
 
