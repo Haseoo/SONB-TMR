@@ -62,9 +62,10 @@ public class MainController {
     }
 
     private void startCircuits() {
-        for (WebClient circuitClient : circuitClients) {
-            circuitClient.replacePath("/equation").post(polynomial);
-        }
+//        for (WebClient circuitClient : circuitClients) {
+//            circuitClient.replacePath("/equation").post(polynomial);
+//        }
+        circuitClients[0].replacePath("/equation").post(polynomial);
     }
 
     @FXML

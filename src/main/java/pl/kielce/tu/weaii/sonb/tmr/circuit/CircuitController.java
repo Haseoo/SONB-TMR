@@ -77,8 +77,20 @@ public class CircuitController {
     }
 
     private void handleEquationEndpoint(Context context) {
+        reset();
         Polynomial polynomialRequest = context.bodyAsClass(Polynomial.class);
         equation.setText(polynomialRequest.buildExpression());
+        Integer root = polynomialRequest.bisection(0, 255);
+        if(root == null) {
+            status.setText("No real root");
+            return;
+        }
+        String binaryRoot = new StringBuilder(Integer.toBinaryString(root)).reverse().toString();
+        for(int i = 0; i < bits.size(); i++) {
+            String value = binaryRoot.length() > i ? Character.toString(binaryRoot.charAt(i)) : "0";
+            bits.get(i).setText(value);
+        }
+
     }
 
     private void handleGetBit(Context context) {
@@ -99,5 +111,14 @@ public class CircuitController {
         context.json(bitResponse);
     }
 
+    private void reset() {
+        equation.setText("");
+        for (Text bit : bits) {
+            bit.setText("");
+        }
 
+        for (Text bit : sentBits) {
+            bit.setText("");
+        }
+    }
 }
