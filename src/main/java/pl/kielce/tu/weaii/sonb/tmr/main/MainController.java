@@ -2,13 +2,16 @@ package pl.kielce.tu.weaii.sonb.tmr.main;
 
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.cxf.jaxrs.client.WebClient;
 import pl.kielce.tu.weaii.sonb.tmr.common.ClientBuilder;
+import pl.kielce.tu.weaii.sonb.tmr.common.dto.BitResponse;
 import pl.kielce.tu.weaii.sonb.tmr.common.dto.Polynomial;
 
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
 public class MainController {
 
@@ -29,9 +33,14 @@ public class MainController {
             new ClientBuilder().host(CLIENT_IP).port(9002).build()
     };
 
-    private final WebClient voterClient = new ClientBuilder().host(VOTER_IP).port(7000).build();
+    private final WebClient voterClient = new ClientBuilder().host(VOTER_IP).port(7000).timeout(8000).build();
     @FXML
     private Button startBtn;
+
+    @FXML
+    private Text status;
+
+    private int bitNo = 0;
 
     @FXML
     private Button polyn;
@@ -46,7 +55,7 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        equationInput.setDisable(true);
+        reset();
     }
 
     @FXML
@@ -58,14 +67,48 @@ public class MainController {
             bits.add(text);
         }
         startCircuits();
-        startBtn.setDisable(true);
+        status.setText("Equation sent");
+        startBtn.setText("Next bit");
+        startBtn.setOnAction(ac -> {
+            nextBit();
+            ac.consume();
+        });
     }
 
     private void startCircuits() {
-//        for (WebClient circuitClient : circuitClients) {
-//            circuitClient.replacePath("/equation").post(polynomial);
-//        }
-        circuitClients[0].replacePath("/equation").post(polynomial);
+        for (WebClient circuitClient : circuitClients) {
+            try {
+                circuitClient.replacePath("/equation").post(polynomial);
+            } catch (Exception ignored) {
+                //ignored
+            }
+        }
+    }
+
+    private void nextBit() {
+        try {
+            var response = voterClient.replacePath("/bit").replaceQueryParam("no", bitNo).get(BitResponse.class);
+            Text bit = bits.get(bitNo);
+            bit.setVisible(true);
+            if(response.getStatus().equals(BitResponse.Status.ERROR)) {
+                new Alert(Alert.AlertType.ERROR, response.getMessage()).showAndWait();
+                reset();
+                return;
+            }
+            bit.setText(response.getBitValue().toString());
+            bitNo++;
+            if (bitNo == 8) {
+                startBtn.setText("Reset");
+                startBtn.setOnAction(ac -> {
+                    reset();
+                    ac.consume();
+                });
+            }
+        } catch (Throwable e) {
+            log.error("A critical error has ocurred", e);
+            new Alert(Alert.AlertType.ERROR, "A critical error has occurred").showAndWait();
+            reset();
+        }
     }
 
     @FXML
@@ -132,11 +175,16 @@ public class MainController {
 
 
     private void reset() {
-        polynomial = null;
-        equationInput.setText("");
+        status.setText("Provide equation");
         for (Text bit : bits) {
             bit.setText("");
         }
+        bitNo = 0;
+        startBtn.setText("Start");
+        startBtn.setOnAction(ec -> {
+            onStart();
+            ec.consume();
+        });
     }
 
 

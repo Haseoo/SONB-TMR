@@ -1,6 +1,9 @@
 package pl.kielce.tu.weaii.sonb.tmr.common.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Objects;
 

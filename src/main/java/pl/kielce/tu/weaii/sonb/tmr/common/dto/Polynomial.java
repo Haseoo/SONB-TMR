@@ -3,13 +3,14 @@ package pl.kielce.tu.weaii.sonb.tmr.common.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
+@Slf4j
 public class Polynomial {
     private List<Integer> coefficients;
 
@@ -54,7 +55,7 @@ public class Polynomial {
     {
         if (func(a) * func(b) >= 0)
         {
-            System.out.println("You have not assumed"
+            log.debug("You have not assumed"
                     + " right a and b");
             return null;
         }
@@ -86,14 +87,5 @@ public class Polynomial {
                 "coefficients=" + coefficients +
                 ", expression='" + buildExpression() + '\'' +
                 '}';
-    }
-
-    public static void main(String[] args) {
-        Polynomial polynomial = new Polynomial();
-
-        polynomial.setCoefficients(Arrays.asList(-144,0,1));
-
-        System.out.println(Integer.toBinaryString(polynomial.bisection(0, 255)));
-
     }
 }

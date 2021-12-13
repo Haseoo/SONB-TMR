@@ -43,7 +43,7 @@ public class VoterController {
     @FXML
     private Text br;
 
-    private List<Text> bits;
+    private List<Text> bits = new ArrayList<>();
 
     @FXML
     private ChoiceBox<Integer> cport;
@@ -62,7 +62,7 @@ public class VoterController {
         Integer selectedItem = cport.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             javalinServer.createAndStart(selectedItem);
-            javalinServer.addPostEndpoint("/bit", this::handleGetBit);
+            javalinServer.addGetEndpoint("/bit", this::handleGetBit);
             cport.setDisable(true);
             startBtn.setDisable(true);
             status.setText(SERVER_STARTED);
@@ -94,7 +94,7 @@ public class VoterController {
             var circuitClient = circuitClients[i];
             BitResponse bitResponse;
             try {
-                bitResponse = circuitClient.replacePath("/bit").query("no", index).get(BitResponse.class);
+                bitResponse = circuitClient.replacePath("/bit").replaceQueryParam("no", index).get(BitResponse.class);
             } catch (Throwable e) {
                 log.error("Error getbit request from client no {} \n {}", i, e);
                 bitResponse = new BitResponse(BitResponse.Status.ERROR, "Request error", null);

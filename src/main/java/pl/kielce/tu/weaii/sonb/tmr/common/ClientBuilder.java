@@ -9,10 +9,16 @@ import java.util.Collections;
 public class ClientBuilder {
     private String host;
     private Integer port;
+    private Integer timeout;
 
 
     public ClientBuilder host(String host) {
         this.host = host;
+        return this;
+    }
+
+    public ClientBuilder timeout(Integer timeout) {
+        this.timeout = timeout;
         return this;
     }
 
@@ -34,8 +40,8 @@ public class ClientBuilder {
         client = client.accept(MediaType.APPLICATION_JSON_TYPE);
         client = client.type(MediaType.APPLICATION_JSON_TYPE);
         var conduit = WebClient.getConfig(client).getHttpConduit();
-        conduit.getClient().setConnectionTimeout(3000);
-        conduit.getClient().setReceiveTimeout(3000);
+        conduit.getClient().setConnectionTimeout(timeout != null ? timeout : 3000);
+        conduit.getClient().setReceiveTimeout(timeout != null ? timeout : 3000);
 
         return client;
     }
