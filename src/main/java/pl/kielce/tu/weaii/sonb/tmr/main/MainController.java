@@ -33,7 +33,7 @@ public class MainController {
             new ClientBuilder().host(CLIENT_IP).port(9002).build()
     };
 
-    private final WebClient voterClient = new ClientBuilder().host(VOTER_IP).port(7000).timeout(8000).build();
+    private final WebClient voterClient = new ClientBuilder().host(VOTER_IP).port(7000).timeout(9000).build();
     @FXML
     private Button startBtn;
 

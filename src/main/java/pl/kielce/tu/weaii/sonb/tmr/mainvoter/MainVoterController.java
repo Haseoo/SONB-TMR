@@ -52,9 +52,9 @@ public class MainVoterController {
     private Button startBtn;
 
     private final WebClient[] voterClients = {
-            new ClientBuilder().host(VOTER_IP).port(8000).build(),
-            new ClientBuilder().host(VOTER_IP).port(8001).build(),
-            new ClientBuilder().host(VOTER_IP).port(8002).build()
+            new ClientBuilder().host(VOTER_IP).port(8000).timeout(500).build(),
+            new ClientBuilder().host(VOTER_IP).port(8001).timeout(500).build(),
+            new ClientBuilder().host(VOTER_IP).port(8002).timeout(500).build()
     };
 
 

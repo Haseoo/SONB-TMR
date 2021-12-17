@@ -52,9 +52,9 @@ public class VoterController {
     private Button startBtn;
 
     private final WebClient[] circuitClients = {
-            new ClientBuilder().host(CLIENT_IP).port(9000).build(),
-            new ClientBuilder().host(CLIENT_IP).port(9001).build(),
-            new ClientBuilder().host(CLIENT_IP).port(9002).build()
+            new ClientBuilder().host(CLIENT_IP).timeout(100).port(9000).build(),
+            new ClientBuilder().host(CLIENT_IP).timeout(100).port(9001).build(),
+            new ClientBuilder().host(CLIENT_IP).timeout(100).port(9002).build()
     };
 
     @FXML
