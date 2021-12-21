@@ -36,7 +36,7 @@ sourceSets {
 def currentOS = org.gradle.internal.os.OperatingSystem.current()
 def platform
 if (currentOS.isWindows()) {
-    platform = 'win'
+    platform = 'mac'
 } else if (currentOS.isLinux()) {
     platform = 'linux'
 } else if (currentOS.isMacOsX()) {
@@ -51,6 +51,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     compileOnly 'org.projectlombok:lombok:1.18.20'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
+    implementation group: 'org.apache.commons', name: 'commons-io', version: '1.3.2'
 
 
     implementation "org.openjfx:javafx-base:11:${platform}"
@@ -63,7 +64,7 @@ test {
     useJUnitPlatform()
 }
 
-mainClassName = 'pl.kielce.tu.weaii.sonb.tmr.main.MainComponent'
+mainClassName = 'pl.kielce.tu.weaii.sonb.tmr.Main'
 
 jar {
     manifest {

@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.jetbrains.annotations.NotNull;
 import pl.kielce.tu.weaii.sonb.tmr.common.ClientBuilder;
 import pl.kielce.tu.weaii.sonb.tmr.common.JavalinServer;
 import pl.kielce.tu.weaii.sonb.tmr.common.dto.BitResponse;
@@ -19,6 +20,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static pl.kielce.tu.weaii.sonb.tmr.common.Constants.SERVER_STARTED;
+import static pl.kielce.tu.weaii.sonb.tmr.common.Utils.doMajorityVote;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -102,12 +104,7 @@ public class VoterController {
             bits.get(i).setText(bitResponse.getBitValue() != null ? bitResponse.getBitValue().toString() : "X");
             bitResponses.add(bitResponse);
         }
-        var bitsResponsesMap = bitResponses.stream()
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        return bitsResponsesMap.entrySet().stream()
-                .filter(entry -> entry.getValue() >= 2)
-                .findFirst().map(Map.Entry::getKey)
-                .orElse(new BitResponse(BitResponse.Status.ERROR, "Three different results", null));
+        return doMajorityVote(bitResponses);
     }
 
 }
