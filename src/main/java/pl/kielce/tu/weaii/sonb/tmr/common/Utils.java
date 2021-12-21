@@ -6,7 +6,7 @@ import pl.kielce.tu.weaii.sonb.tmr.common.dto.BitResponse;
 import pl.kielce.tu.weaii.sonb.tmr.main.MainComponent;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -19,7 +19,7 @@ public class Utils {
     }
 
     @NotNull
-    public static BitResponse doMajorityVote(ArrayList<BitResponse> bitResponses) {
+    public static BitResponse doMajorityVote(List<BitResponse> bitResponses) {
         var bitsResponsesMap = bitResponses.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         return bitsResponsesMap.entrySet().stream()
