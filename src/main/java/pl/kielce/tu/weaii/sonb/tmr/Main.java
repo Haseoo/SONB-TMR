@@ -5,6 +5,9 @@ import org.apache.cxf.BusFactory;
 import org.apache.cxf.transport.ConduitInitiatorManager;
 import org.apache.cxf.transport.http.HTTPTransportFactory;
 import pl.kielce.tu.weaii.sonb.tmr.circuit.CircuitComponent;
+import pl.kielce.tu.weaii.sonb.tmr.main.MainComponent;
+import pl.kielce.tu.weaii.sonb.tmr.mainvoter.MainVoterComponent;
+import pl.kielce.tu.weaii.sonb.tmr.voter.VoterComponent;
 
 public class Main {
     public static void main(String[] args) {

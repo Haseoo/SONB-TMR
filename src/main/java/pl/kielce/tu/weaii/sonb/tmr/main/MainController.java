@@ -21,19 +21,28 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
-@RequiredArgsConstructor
 public class MainController {
 
+    MainController(){
+        this.voterClient = new ClientBuilder().host(VOTER_IP).port(7000).timeout(9000).build();
+        this.circuitClients = new WebClient[]{
+                new ClientBuilder().host(CLIENT_IP).port(9000).build(),
+                new ClientBuilder().host(CLIENT_IP).port(9001).build(),
+                new ClientBuilder().host(CLIENT_IP).port(9002).build()
+        };
+    }
+
+    public MainController(WebClient[] circuitClients, WebClient voterClient) {
+        this.circuitClients = circuitClients;
+        this.voterClient = voterClient;
+    }
+
+    private final WebClient[] circuitClients;
+
+    private final WebClient voterClient;
     private static final String CLIENT_IP = "localhost";
     private static final String VOTER_IP = "localhost";
 
-    private final WebClient[] circuitClients = {
-            new ClientBuilder().host(CLIENT_IP).port(9000).build(),
-            new ClientBuilder().host(CLIENT_IP).port(9001).build(),
-            new ClientBuilder().host(CLIENT_IP).port(9002).build()
-    };
-
-    private final WebClient voterClient = new ClientBuilder().host(VOTER_IP).port(7000).timeout(9000).build();
     @FXML
     private Button startBtn;
 
