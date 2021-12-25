@@ -36,7 +36,12 @@ class MainComponentTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws IOException {
-        mainController = new MainController(new WebClient[]{circuitWebClientMock, circuitWebClientMock, circuitWebClientMock}, mainVoterWebClientMock);
+        mainController = new MainController(new WebClient[]{
+                circuitWebClientMock,
+                circuitWebClientMock,
+                circuitWebClientMock
+        },
+        mainVoterWebClientMock);
         var mainWindow = new FXMLLoader(getResourceURL("FXML/main.fxml"));
         mainWindow.setController(mainController);
         mainRoot = mainWindow.load();

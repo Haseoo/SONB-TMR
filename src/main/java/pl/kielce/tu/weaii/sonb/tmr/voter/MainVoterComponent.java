@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import org.apache.cxf.jaxrs.client.WebClient;
 import pl.kielce.tu.weaii.sonb.tmr.common.ClientBuilder;
 import pl.kielce.tu.weaii.sonb.tmr.common.JavalinServer;
-import pl.kielce.tu.weaii.sonb.tmr.voter.VoterController;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -29,7 +28,7 @@ public class MainVoterComponent extends Application {
     public void start(Stage stage) throws IOException {
         var mainWindow = new FXMLLoader(getResourceURL("FXML/voter.fxml"));
         var controller = new VoterController(server,
-                new WebClient[]  {
+                new WebClient[]{
                         new ClientBuilder().host(VOTER_IP).port(8000).timeout(500).build(),
                         new ClientBuilder().host(VOTER_IP).port(8001).timeout(500).build(),
                         new ClientBuilder().host(VOTER_IP).port(8002).timeout(500).build()

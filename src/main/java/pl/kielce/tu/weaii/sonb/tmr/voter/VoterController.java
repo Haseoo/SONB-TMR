@@ -8,15 +8,12 @@ import javafx.scene.text.Text;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.jetbrains.annotations.NotNull;
-import pl.kielce.tu.weaii.sonb.tmr.common.ClientBuilder;
 import pl.kielce.tu.weaii.sonb.tmr.common.JavalinServer;
 import pl.kielce.tu.weaii.sonb.tmr.common.dto.BitResponse;
 
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import static pl.kielce.tu.weaii.sonb.tmr.common.Constants.SERVER_STARTED;
 import static pl.kielce.tu.weaii.sonb.tmr.common.Utils.doMajorityVote;
@@ -85,7 +82,7 @@ public class VoterController {
 
     private BitResponse getBitResponse(Context context) {
         String no = context.queryParam("no");
-        if(no == null) {
+        if (no == null) {
 
             return new BitResponse(BitResponse.Status.ERROR, "Provide bit no", null);
         }

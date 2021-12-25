@@ -7,8 +7,6 @@ import pl.kielce.tu.weaii.sonb.tmr.common.dto.BitResponse;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class UtilsTest {
 
     @Test

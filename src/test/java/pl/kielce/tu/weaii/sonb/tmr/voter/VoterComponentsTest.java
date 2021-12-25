@@ -32,7 +32,7 @@ class VoterComponentsTest extends ApplicationTest {
     WebClient circuitWebClientMock = Mockito.mock(WebClient.class);
 
     private final int componentTestedPort = 8000;
-    final WebClient voterClient =new ClientBuilder().host("localhost").port(componentTestedPort).timeout(10000).build();;
+    final WebClient voterClient = new ClientBuilder().host("localhost").port(componentTestedPort).timeout(10000).build();
     protected static JavalinServer server;
 
 
@@ -57,7 +57,7 @@ class VoterComponentsTest extends ApplicationTest {
 
     void should_display_0_when_three_0s_from_circuits() {
         //given
-        final var bitNo  = 0;
+        final var bitNo = 0;
         mockWebClientBuildRequestMethod(bitNo);
         when(circuitWebClientMock.get(BitResponse.class)).thenReturn(getOk(0));
         //when
@@ -68,7 +68,7 @@ class VoterComponentsTest extends ApplicationTest {
 
     void should_display_0_when_two_0s_and_one_1_from_circuits() {
         //given
-        final var bitNo  = 1;
+        final var bitNo = 1;
         mockWebClientBuildRequestMethod(bitNo);
         when(circuitWebClientMock.get(BitResponse.class)).thenReturn(getOk(0))
                 .thenReturn(getOk(0))
@@ -81,7 +81,7 @@ class VoterComponentsTest extends ApplicationTest {
 
     void should_display_1_when_one_0_and_two_1s_from_circuits() {
         //given
-        final var bitNo  = 2;
+        final var bitNo = 2;
         mockWebClientBuildRequestMethod(bitNo);
         when(circuitWebClientMock.get(BitResponse.class)).thenReturn(getOk(0))
                 .thenReturn(getOk(1))
@@ -95,7 +95,7 @@ class VoterComponentsTest extends ApplicationTest {
 
     void should_display_1_three_1s_from_circuits() {
         //given
-        final var bitNo  = 3;
+        final var bitNo = 3;
         mockWebClientBuildRequestMethod(bitNo);
         when(circuitWebClientMock.get(BitResponse.class)).thenReturn(getOk(1))
                 .thenReturn(getOk(1))
@@ -108,7 +108,7 @@ class VoterComponentsTest extends ApplicationTest {
 
     void should_display_x_three_x_from_circuits() {
         //given
-        final var bitNo  = 4;
+        final var bitNo = 4;
         mockWebClientBuildRequestMethod(bitNo);
         when(circuitWebClientMock.get(BitResponse.class)).thenReturn(getBad());
         //when
@@ -136,7 +136,7 @@ class VoterComponentsTest extends ApplicationTest {
     }
 
     private VoterController getController() {
-        return new VoterController(server, new WebClient[] {
+        return new VoterController(server, new WebClient[]{
                 circuitWebClientMock, circuitWebClientMock, circuitWebClientMock
         }, Arrays.asList(componentTestedPort, 8001, 8002), componentTestedPort);
     }
@@ -144,7 +144,7 @@ class VoterComponentsTest extends ApplicationTest {
     private void makeRequest(final int bitNo,
                              final Integer expectedBit,
                              final BitResponse.Status expectedStatus) {
-        new Thread(() ->  {
+        new Thread(() -> {
             var response = voterClient.replacePath("/bit").replaceQueryParam("no", bitNo).get(BitResponse.class);
             Assertions.assertThat(response).extracting(BitResponse::getStatus).isEqualTo(expectedStatus);
             Assertions.assertThat(response).extracting(BitResponse::getBitValue).isEqualTo(expectedBit);
@@ -152,7 +152,7 @@ class VoterComponentsTest extends ApplicationTest {
 
     }
 
-    private void verifyBits(String...values) {
+    private void verifyBits(String... values) {
         sleep(1000); //wait for request to perform
         FxAssert.verifyThat("#b0", TextMatchers.hasText(values[0]));
         FxAssert.verifyThat("#b1", TextMatchers.hasText(values[1]));

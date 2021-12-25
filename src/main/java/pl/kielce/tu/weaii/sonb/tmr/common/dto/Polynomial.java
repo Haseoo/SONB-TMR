@@ -40,37 +40,34 @@ public class Polynomial {
         return sbuilder.toString();
     }
 
-    public double func(double x){
+    public double func(double x) {
         double result = 0;
-        for(int i=1; i<= coefficients.size() - 1; i++){
-            result += Math.pow(x,i)*coefficients.get(i);
+        for (int i = 1; i <= coefficients.size() - 1; i++) {
+            result += Math.pow(x, i) * coefficients.get(i);
         }
         return result + coefficients.get(0);
     }
 
-    static final float EPSILON = (float)0.01;
+    static final float EPSILON = (float) 0.01;
 
-    public Integer bisection(double a, double b)
-    {
-        if (func(a) * func(b) >= 0)
-        {
+    public Integer bisection(double a, double b) {
+        if (func(a) * func(b) >= 0) {
             log.debug("You have not assumed"
                     + " right a and b");
             return null;
         }
 
         double c = a;
-        while ((b-a) >= EPSILON)
-        {
+        while ((b - a) >= EPSILON) {
             // Find middle point
-            c = (a+b)/2;
+            c = (a + b) / 2;
 
             // Check if middle point is root
             if (func(c) == 0.0)
                 break;
 
                 // Decide the side to repeat the steps
-            else if (func(c)*func(a) < 0)
+            else if (func(c) * func(a) < 0)
                 b = c;
             else
                 a = c;

@@ -81,12 +81,12 @@ public class CircuitController {
         Polynomial polynomialRequest = context.bodyAsClass(Polynomial.class);
         equation.setText(polynomialRequest.buildExpression());
         Integer root = polynomialRequest.bisection(0, 255);
-        if(root == null) {
+        if (root == null) {
             status.setText("No real root");
             return;
         }
         String binaryRoot = new StringBuilder(Integer.toBinaryString(root)).reverse().toString();
-        for(int i = 0; i < bits.size(); i++) {
+        for (int i = 0; i < bits.size(); i++) {
             String value = binaryRoot.length() > i ? Character.toString(binaryRoot.charAt(i)) : "0";
             bits.get(i).setText(value);
         }

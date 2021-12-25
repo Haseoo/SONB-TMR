@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.text.Text;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.cxf.jaxrs.client.WebClient;
 import pl.kielce.tu.weaii.sonb.tmr.common.ClientBuilder;
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class MainController {
 
-    MainController(){
+    MainController() {
         this.voterClient = new ClientBuilder().host(VOTER_IP).port(7000).timeout(9000).build();
         this.circuitClients = new WebClient[]{
                 new ClientBuilder().host(CLIENT_IP).port(9000).build(),
@@ -99,7 +98,7 @@ public class MainController {
             var response = voterClient.replacePath("/bit").replaceQueryParam("no", bitNo).get(BitResponse.class);
             Text bit = bits.get(bitNo);
             bit.setVisible(true);
-            if(response.getStatus().equals(BitResponse.Status.ERROR)) {
+            if (response.getStatus().equals(BitResponse.Status.ERROR)) {
                 new Alert(Alert.AlertType.ERROR, response.getMessage()).showAndWait();
                 reset();
                 return;
