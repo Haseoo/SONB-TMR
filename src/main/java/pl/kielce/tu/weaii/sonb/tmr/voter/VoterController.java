@@ -13,9 +13,8 @@ import pl.kielce.tu.weaii.sonb.tmr.common.ClientBuilder;
 import pl.kielce.tu.weaii.sonb.tmr.common.JavalinServer;
 import pl.kielce.tu.weaii.sonb.tmr.common.dto.BitResponse;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -25,10 +24,13 @@ import static pl.kielce.tu.weaii.sonb.tmr.common.Utils.doMajorityVote;
 @RequiredArgsConstructor
 @Slf4j
 public class VoterController {
-
-    private static final String CLIENT_IP = "localhost";
-
     private final JavalinServer javalinServer;
+
+    private final WebClient[] circuitClients;
+
+    private final Collection<Integer> ports;
+
+    private final int defaultPort;
 
     @FXML
     private Text status;
@@ -53,11 +55,6 @@ public class VoterController {
     @FXML
     private Button startBtn;
 
-    private final WebClient[] circuitClients = {
-            new ClientBuilder().host(CLIENT_IP).timeout(100).port(9000).build(),
-            new ClientBuilder().host(CLIENT_IP).timeout(100).port(9001).build(),
-            new ClientBuilder().host(CLIENT_IP).timeout(100).port(9002).build()
-    };
 
     @FXML
     private void onStartClick() {
@@ -73,7 +70,8 @@ public class VoterController {
 
     @FXML
     private void initialize() {
-        cport.getItems().addAll(8000, 8001, 8002);
+        cport.getItems().addAll(ports);
+        cport.setValue(defaultPort);
         bits.add(b0);
         bits.add(b1);
         bits.add(b2);
@@ -88,6 +86,7 @@ public class VoterController {
     private BitResponse getBitResponse(Context context) {
         String no = context.queryParam("no");
         if(no == null) {
+
             return new BitResponse(BitResponse.Status.ERROR, "Provide bit no", null);
         }
         int index = Integer.parseInt(no);
