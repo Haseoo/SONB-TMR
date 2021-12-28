@@ -5,36 +5,45 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.apache.cxf.jaxrs.client.WebClient;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.matcher.control.TextMatchers;
+import pl.kielce.tu.weaii.sonb.tmr.common.ClientBuilder;
 import pl.kielce.tu.weaii.sonb.tmr.common.JavalinServer;
-import org.mockito.Mockito;
 import pl.kielce.tu.weaii.sonb.tmr.common.dto.BitResponse;
 import pl.kielce.tu.weaii.sonb.tmr.common.dto.Polynomial;
-
 
 import java.io.IOException;
 import java.util.Arrays;
 
-import static pl.kielce.tu.weaii.sonb.tmr.common.Constants.SERVER_STARTED;
 import static pl.kielce.tu.weaii.sonb.tmr.common.Utils.getResourceURL;
-import static org.mockito.Mockito.*;
 
 class CircuitComponentTest extends ApplicationTest {
+    protected static JavalinServer server;
 
+    private final int componentTestedPort = 9000;
+    private final WebClient circuitClient = new ClientBuilder().host("localhost").port(componentTestedPort).timeout(100000).build();
 
-    private final JavalinServer javalinServer = new JavalinServer();
+    private final int[] expectedBits = new int[]{0,0,1,0,0,0,1,0};
+
+    @BeforeAll
+    static void initServer(){server = new JavalinServer();}
+
+    @AfterAll
+    static void destroyServer(){ server.stop(); }
 
     Pane mainRoot;
     Stage mainStage;
 
-    CircuitController circuitController;
-
     @Override
     public void start(Stage stage) throws IOException {
-        circuitController = new CircuitController(javalinServer);
         var mainWindow = new FXMLLoader(getResourceURL("FXML/circuit.fxml"));
-        mainWindow.setController(circuitController);
+        mainWindow.setController(getCircuitController());
         mainRoot = mainWindow.load();
         mainStage = stage;
         Scene scene = new Scene(mainRoot);
@@ -42,6 +51,7 @@ class CircuitComponentTest extends ApplicationTest {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+        clickOn("#startBtn");
     }
 
     private BitResponse getOk(int val) {
@@ -50,34 +60,73 @@ class CircuitComponentTest extends ApplicationTest {
 
     @Test
     public void test_circuit(){
-        //wystartowac server
-        javalinServer.createAndStart(9000);
-
-        Polynomial polynomial = new Polynomial();
-        polynomial.setCoefficients(Arrays.asList(-4761,0,1));
-        Integer root = polynomial.bisection(0,255);
-        BitResponse[] expected = new BitResponse[]{
-                getOk(1),
-                getOk(0),
-                getOk(1),
-                getOk(0),
-                getOk(0),
-                getOk(0),
-                getOk(1),
-                getOk(0)};
-
-
-        // wysylam requesta /equalion , DAJE SLEEPA!!!
-        //sprawdzam czy sie dobrze rozwiazaly bity w gornej linijce
-        //sprawdz klikniecie na bit czy sie przekreca x2 ten sam
-        //wywoule 8 razy endpoitna /bit daje sleepa
-        //sprawdzam czy sie na dole pojawil sleep
-        //PAMIETAC O SERVER STOP @AfterAll
-        //znalesc webclienta
-        //w circuit wywoluje endpoint klientem i oczekujesz ze sie pozmienia
-
-
+        should_display_expectedBits_after_falsification();
+        should_get_bit();
+        should_display_error_message();
+        should_display_null_bits();
     }
 
+    private void should_display_error_message() {
+        //given
 
+        //when
+        makeRequest(new Polynomial(Arrays.asList(-4761,0,0)));
+
+        //then
+        FxAssert.verifyThat("#status",TextMatchers.hasText("No real root"));
+    }
+
+    private void should_display_null_bits(){
+        //given
+
+        //when
+        makeRequest(1,null, BitResponse.Status.ERROR);
+
+        //then
+    }
+
+    private void should_get_bit() {
+        //given
+
+        //when
+        for(int i = 0; i < expectedBits.length; i++){
+            makeRequest(i,expectedBits[i], BitResponse.Status.OK);
+        }
+        //then
+    }
+
+    private void should_display_expectedBits_after_falsification() {
+        //given
+
+        //when
+        makeRequest(new Polynomial(Arrays.asList(-4761,0,1)));
+        clickOn("#bit0");
+
+        //then
+        for(int i = 0; i < expectedBits.length; i++){
+            FxAssert.verifyThat(String.format("#bit%d",i), TextMatchers.hasText(Integer.toString(expectedBits[i])));
+        }
+    }
+
+    private CircuitController getCircuitController(){
+        return new CircuitController(server);
+    }
+
+    private void makeRequest(Polynomial polynomial) {
+        new Thread(() -> {
+            circuitClient.replacePath("/equation").post(polynomial);
+        }).start();
+        sleep(2000);
+    }
+
+    private void makeRequest(final int bitNo,
+                             final Integer expectedBit,
+                             final BitResponse.Status expectedStatus) {
+        new Thread(() -> {
+            var response = circuitClient.replacePath("/bit").replaceQueryParam("no", bitNo).get(BitResponse.class);
+            Assertions.assertThat(response).extracting(BitResponse::getStatus).isEqualTo(expectedStatus);
+            Assertions.assertThat(response).extracting(BitResponse::getBitValue).isEqualTo(expectedBit);
+        }).start();
+        sleep(500);
+    }
 }
