@@ -38,6 +38,11 @@ public class CircuitController {
     private List<Text> sentBits = new ArrayList<>();
 
     @FXML
+    private void initialize() {
+        cport.setValue(9000);
+    }
+
+    @FXML
     private void onStartClick() {
         Integer selectedItem = cport.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
