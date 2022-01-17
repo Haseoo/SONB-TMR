@@ -29,9 +29,9 @@ public class MainVoterComponent extends Application {
         var mainWindow = new FXMLLoader(getResourceURL("FXML/voter.fxml"));
         var controller = new VoterController(server,
                 new WebClient[]{
-                        new ClientBuilder().host(VOTER_IP).port(8000).timeout(500).build(),
-                        new ClientBuilder().host(VOTER_IP).port(8001).timeout(500).build(),
-                        new ClientBuilder().host(VOTER_IP).port(8002).timeout(500).build()
+                        new ClientBuilder().host(VOTER_IP).port(8000).timeout(3000).build(),
+                        new ClientBuilder().host(VOTER_IP).port(8001).timeout(3000).build(),
+                        new ClientBuilder().host(VOTER_IP).port(8002).timeout(3000).build()
                 },
                 Collections.singletonList(7000),
                 7000);
